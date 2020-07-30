@@ -13,7 +13,7 @@ namespace LootLogger
 {
     public class LootService : ILootService
     {
-        private const string url = "https://discordapp.com/api/webhooks/638028770938322944/d7BOBFRCcLVbYFOvSGX_raNDjYQUCQ6Jz2_6wKFSv3ARy4jpFk9AXLELn8J7utGkBA2G";
+        private const string url = "";
 
         private List<Player> players;
         private readonly HttpClient client;
@@ -71,27 +71,27 @@ namespace LootLogger
                     fs.Write(bytes, 0, bytes.Length);
                 }
 
-                if (content.Length < 1)
-                {
-                    Console.WriteLine("Nothing to post");
-                    return;
-                }
+                //if (content.Length < 1)
+                //{
+                //    Console.WriteLine("Nothing to post");
+                //    return;
+                //}
 
-                content = "{\"content\":\"" + content + "\"}";
-                var httpContent = new StringContent(content, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, httpContent);
+                //content = "{\"content\":\"" + content + "\"}";
+                //var httpContent = new StringContent(content, Encoding.UTF8, "application/json");
+                //var response = await client.PostAsync(url, httpContent);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    Console.WriteLine("Successfully uploaded logs");
-                    this.lastUploadDate = DateTime.UtcNow;
-                    string url = await response.Content.ReadAsStringAsync();
-                    Process.Start(url);
-                }
-                else
-                {
-                    Console.WriteLine("Failed to upload logs");
-                }
+                //if (response.IsSuccessStatusCode)
+                //{
+                //    Console.WriteLine("Successfully uploaded logs");
+                //    this.lastUploadDate = DateTime.UtcNow;
+                //    string url = await response.Content.ReadAsStringAsync();
+                //    Process.Start(url);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("Failed to upload logs");
+                //}
             }
             catch (Exception e)
             {

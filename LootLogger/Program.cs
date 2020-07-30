@@ -99,6 +99,9 @@ namespace LootLogger
                 while (enumerator.MoveNext())
                 {
                     PacketDevice selectedDevice = enumerator.Current;
+                    if ((selectedDevice.Attributes & DeviceAttributes.Loopback) == DeviceAttributes.Loopback) {
+                        continue;
+                    }
                     new Thread(delegate()
                     {
                         using (PacketCommunicator communicator = selectedDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
